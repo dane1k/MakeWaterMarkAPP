@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeWaterMarkAPP", "MakeWaterMarkAPP\MakeWaterMarkAPP.csproj", "{9188DF79-320B-4588-A58A-80CF16C9F9D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGraphic", "MyGraphic\MyGraphic.csproj", "{8DB8D32C-8433-459A-8AEE-C000286DDC91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9188DF79-320B-4588-A58A-80CF16C9F9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9188DF79-320B-4588-A58A-80CF16C9F9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9188DF79-320B-4588-A58A-80CF16C9F9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9188DF79-320B-4588-A58A-80CF16C9F9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DB8D32C-8433-459A-8AEE-C000286DDC91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB8D32C-8433-459A-8AEE-C000286DDC91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB8D32C-8433-459A-8AEE-C000286DDC91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB8D32C-8433-459A-8AEE-C000286DDC91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC79E618-1254-48C3-9381-603B9341360A}
+	EndGlobalSection
+EndGlobal
