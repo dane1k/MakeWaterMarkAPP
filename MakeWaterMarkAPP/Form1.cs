@@ -1,24 +1,29 @@
 using MyGraphic;
 using System.Diagnostics;
-using System.Drawing.Imaging;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace MakeWaterMarkAPP
 {
 	public partial class Form1 : Form
 	{
 		List<string> fileNames = new();
-		string? watermarkName=null;
-		string? saveFilePath = null;
+		System.Timers.Timer t;
+		string? watermarkName= "C:\\TRYING\\TESTS\\Logo\\logo.png";
+		string? saveFilePath = "C:\\TRYING\\Export";
 
 		public Form1()
 		{
 			InitializeComponent();
 			bProcessing.Enabled = false;
+			t = new System.Timers.Timer(100);
+            t.Elapsed += Timer1_Tick;
 		}
-		private void CheckProcessing()
+
+        private void Timer1_Tick(object? sender, EventArgs e)
+        {
+			UpdateProgressBar(counter);
+        }
+
+        private void CheckProcessing()
 		{
 			if (fileNames.Count > 0 && watermarkName != null && saveFilePath != null)
 			{
@@ -56,42 +61,60 @@ namespace MakeWaterMarkAPP
 			tbWaterMark.Text = watermarkName;
 		}
 
-
-
-		private void bProcessing_Click(object sender, EventArgs e)
+		int counter = 0;
+        private void bProcessing_Click(object sender, EventArgs e)
 		{
-			//timer1.Start();
+			t.Start();
 
-			int counter = 0;
+			counter = 0;
+
 			progressBar1.Value = 0;
 			progressBar1.Maximum = fileNames.Count;
 
-			foreach (string fileName in fileNames)
+            Parallel.ForEach(fileNames, new ParallelOptions { MaxDegreeOfParallelism = 8 }, (x) =>
 			{
-				using (Image image = Image.FromFile(fileName))
-				{
-					using (Image watermarkImage = Image.FromFile(watermarkName))
-					{
-						Image res = WatermarkLib.AddWatermark(image, watermarkImage);
+				Thread.CurrentThread.Priority = ThreadPriority.Lowest;
+                Debug.WriteLine(Interlocked.Increment(ref counter));
+                ProcessOne(x);
+            });
 
-						var myImage = new MyImage();
-						myImage.FileName = fileName;
-						myImage.Image = res;
-						string filePathName = Path.GetFileName(fileName);
-						string finalSave = Path.Combine(saveFilePath, filePathName);
-                        using (Bitmap bmp = new Bitmap(myImage.Image, myImage.Image.Width, myImage.Image.Height))
-                        {
-							bmp.Save(finalSave);
-                        }
-                        //myImage.Image.Save(finalSave);
-					}
-				}
-				progressBar1.Value = counter++;
-			}
             Process.Start(Environment.GetEnvironmentVariable("WINDIR") +  @"\explorer.exe", saveFilePath);
-            //MessageBox.Show("Processing completed!");
-            // timer1.Stop();
-            //progressBar1.Value = 0;
+             t.Stop();
+            
+        }
+
+        private void UpdateProgressBar(int val)
+        {
+			Action f = () => progressBar1.Value = val;
+			if (progressBar1.InvokeRequired)
+			{
+				progressBar1.Invoke(f);
+			}
+			else
+			{
+				progressBar1.Value = val;
+			}
+        }
+
+        private void ProcessOne(String fileName)
+		{
+            using (Image image = Image.FromFile(fileName))
+            {
+                using (Image watermarkImage = Image.FromFile(watermarkName))
+                {
+                    Image res = WatermarkLib.AddWatermark(image, watermarkImage);
+
+                    var myImage = new MyImage();
+                    myImage.FileName = fileName;
+                    myImage.Image = res;
+                    string filePathName = Path.GetFileName(fileName);
+                    string finalSave = Path.Combine(saveFilePath, filePathName);
+                    using (Bitmap bmp = new Bitmap(myImage.Image, myImage.Image.Width, myImage.Image.Height))
+                    {
+                        bmp.Save(finalSave);
+                    }
+                }
+            }
         }
 		private void bSave_Click(object sender, EventArgs e)
 		{
@@ -99,16 +122,14 @@ namespace MakeWaterMarkAPP
 			if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderSaveDialog.SelectedPath))
 			{
 				saveFilePath = folderSaveDialog.SelectedPath;
-				// Process.Start(saveFilePath);
 			}
             CheckProcessing();
 
         }
-        // string destinationPath = Path.Combine(destinationFolder, $"{Path.GetFileNameWithoutExtension(image.FileName)}_WITHWATERMARK.png");
 
         private void timer1_Tick(object sender, EventArgs e)
 		{
-			progressBar1.Increment(1);
+			UpdateProgressBar(counter);
 		}
 		private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
 		{
