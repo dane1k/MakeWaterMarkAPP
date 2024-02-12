@@ -42,15 +42,6 @@
             progressBar1 = new ProgressBar();
             timer1 = new System.Windows.Forms.Timer(components);
             folderSaveDialog = new FolderBrowserDialog();
-            rbVTop = new RadioButton();
-            lbChoosePosition = new Label();
-            lbVertical = new Label();
-            rbVCenter = new RadioButton();
-            rbVBottom = new RadioButton();
-            rbHTop = new RadioButton();
-            rbHCenter = new RadioButton();
-            rbHBottom = new RadioButton();
-            lbHorizontal = new Label();
             SuspendLayout();
             // 
             // bOpen
@@ -132,113 +123,11 @@
             progressBar1.TabIndex = 7;
             progressBar1.Click += progressBar1_Click;
             // 
-            // rbVTop
-            // 
-            rbVTop.AutoSize = true;
-            rbVTop.Location = new Point(369, 236);
-            rbVTop.Name = "rbVTop";
-            rbVTop.Size = new Size(44, 19);
-            rbVTop.TabIndex = 8;
-            rbVTop.TabStop = true;
-            rbVTop.Text = "Top";
-            rbVTop.UseVisualStyleBackColor = true;
-            // 
-            // lbChoosePosition
-            // 
-            lbChoosePosition.AutoSize = true;
-            lbChoosePosition.Location = new Point(510, 175);
-            lbChoosePosition.Name = "lbChoosePosition";
-            lbChoosePosition.Size = new Size(84, 15);
-            lbChoosePosition.TabIndex = 9;
-            lbChoosePosition.Text = "Select Position";
-            // 
-            // lbVertical
-            // 
-            lbVertical.AutoSize = true;
-            lbVertical.Location = new Point(369, 209);
-            lbVertical.Name = "lbVertical";
-            lbVertical.Size = new Size(48, 15);
-            lbVertical.TabIndex = 10;
-            lbVertical.Text = "Vertical:";
-            // 
-            // rbVCenter
-            // 
-            rbVCenter.AutoSize = true;
-            rbVCenter.Location = new Point(500, 236);
-            rbVCenter.Name = "rbVCenter";
-            rbVCenter.Size = new Size(60, 19);
-            rbVCenter.TabIndex = 11;
-            rbVCenter.TabStop = true;
-            rbVCenter.Text = "Center";
-            rbVCenter.UseVisualStyleBackColor = true;
-            // 
-            // rbVBottom
-            // 
-            rbVBottom.AutoSize = true;
-            rbVBottom.Location = new Point(657, 236);
-            rbVBottom.Name = "rbVBottom";
-            rbVBottom.Size = new Size(65, 19);
-            rbVBottom.TabIndex = 12;
-            rbVBottom.TabStop = true;
-            rbVBottom.Text = "Bottom";
-            rbVBottom.UseVisualStyleBackColor = true;
-            // 
-            // rbHTop
-            // 
-            rbHTop.AutoSize = true;
-            rbHTop.Location = new Point(369, 317);
-            rbHTop.Name = "rbHTop";
-            rbHTop.Size = new Size(44, 19);
-            rbHTop.TabIndex = 13;
-            rbHTop.TabStop = true;
-            rbHTop.Text = "Top";
-            rbHTop.UseVisualStyleBackColor = true;
-            // 
-            // rbHCenter
-            // 
-            rbHCenter.AutoSize = true;
-            rbHCenter.Location = new Point(500, 317);
-            rbHCenter.Name = "rbHCenter";
-            rbHCenter.Size = new Size(60, 19);
-            rbHCenter.TabIndex = 14;
-            rbHCenter.TabStop = true;
-            rbHCenter.Text = "Center";
-            rbHCenter.UseVisualStyleBackColor = true;
-            // 
-            // rbHBottom
-            // 
-            rbHBottom.AutoSize = true;
-            rbHBottom.Location = new Point(657, 317);
-            rbHBottom.Name = "rbHBottom";
-            rbHBottom.Size = new Size(65, 19);
-            rbHBottom.TabIndex = 15;
-            rbHBottom.TabStop = true;
-            rbHBottom.Text = "Bottom";
-            rbHBottom.UseVisualStyleBackColor = true;
-            // 
-            // lbHorizontal
-            // 
-            lbHorizontal.AutoSize = true;
-            lbHorizontal.Location = new Point(369, 285);
-            lbHorizontal.Name = "lbHorizontal";
-            lbHorizontal.Size = new Size(62, 15);
-            lbHorizontal.TabIndex = 16;
-            lbHorizontal.Text = "Horizontal";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lbHorizontal);
-            Controls.Add(rbHBottom);
-            Controls.Add(rbHCenter);
-            Controls.Add(rbHTop);
-            Controls.Add(rbVBottom);
-            Controls.Add(rbVCenter);
-            Controls.Add(lbVertical);
-            Controls.Add(lbChoosePosition);
-            Controls.Add(rbVTop);
             Controls.Add(progressBar1);
             Controls.Add(bProcessing);
             Controls.Add(bSave);
@@ -266,14 +155,5 @@
         private ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         private FolderBrowserDialog folderSaveDialog;
-        private RadioButton rbVTop;
-        private Label lbChoosePosition;
-        private Label lbVertical;
-        private RadioButton rbVCenter;
-        private RadioButton rbVBottom;
-        private RadioButton rbHTop;
-        private RadioButton rbHCenter;
-        private RadioButton rbHBottom;
-        private Label lbHorizontal;
     }
 }
